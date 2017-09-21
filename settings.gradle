@@ -1,1 +1,1 @@
-include ':app-main'
+include ':app-main', ':repository', ':commons-java', ':commons-android'

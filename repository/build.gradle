@@ -1,0 +1,62 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion Integer.parseInt(compile_sdk_version)
+    buildToolsVersion "${build_tools_version}"
+
+    defaultConfig {
+        minSdkVersion Integer.parseInt(min_sdk_version)
+        targetSdkVersion Integer.parseInt(target_sdk_version)
+    }
+
+    compileOptions {
+        sourceCompatibility "${java_source_compatibility}"
+        targetCompatibility "${java_target_compatibility}"
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+}
+
+// Isto foi incluído aqui para funcionar injeção de dependência com Dagger 2 no teste unitário.
+// Mais informações: https://stackoverflow.com/questions/42793505/dagger-2-generated-test-component-not-recognized
+android.libraryVariants.all {
+    def aptOutputDir = new File(buildDir, "generated/source/apt/${it.unitTestVariant.dirName}")
+    it.unitTestVariant.addJavaSourceFoldersToModel(aptOutputDir)
+}
+
+dependencies {
+    implementation "com.android.support:support-annotations:${android_support_version}"
+    implementation "com.android.support:support-core-utils:${android_support_version}"
+
+    implementation project(':commons-java')
+    implementation project(':commons-android')
+
+    api "com.squareup.retrofit2:retrofit:${retrofit_version}"
+    api "com.squareup.retrofit2:converter-gson:${retrofit_version}"
+    implementation "com.google.code.gson:gson:${gson_version}"
+
+    compileOnly "javax.annotation:jsr250-api:${jsr250_version}"
+    implementation "com.google.dagger:dagger:${dagger_version}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${dagger_version}"
+    testAnnotationProcessor "com.google.dagger:dagger-compiler:${dagger_version}"
+
+    compileOnly "org.projectlombok:lombok:${lombok_version}"
+    annotationProcessor "org.projectlombok:lombok:${lombok_version}"
+
+    compileOnly "com.google.auto.value:auto-value:${auto_value_version}"
+    annotationProcessor "com.google.auto.value:auto-value:${auto_value_version}"
+    compileOnly "com.ryanharter.auto.value:auto-value-gson:${auto_value_gson_version}"
+    annotationProcessor "com.ryanharter.auto.value:auto-value-gson:${auto_value_gson_version}"
+    compileOnly "com.ryanharter.auto.value:auto-value-parcel:${auto_value_parcel_version}"
+    annotationProcessor "com.ryanharter.auto.value:auto-value-parcel:${auto_value_parcel_version}"
+
+    testImplementation("junit:junit:${junit_version}", { exclude group: 'org.hamcrest' })
+    testImplementation "org.hamcrest:hamcrest-junit:${hamcrest_version}"
+    testImplementation "org.mockito:mockito-core:${mockito_version}"
+    testImplementation("org.robolectric:robolectric:${robolectric_version}", { exclude group: 'org.hamcrest' })
+    testImplementation "com.squareup.okhttp3:mockwebserver:${mockwebserver_version}"
+}
