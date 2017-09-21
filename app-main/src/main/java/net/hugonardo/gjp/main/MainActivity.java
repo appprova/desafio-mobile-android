@@ -3,13 +3,13 @@ package net.hugonardo.gjp.main;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import net.hugonardo.gjp.R;
 import net.hugonardo.gjp.databinding.MainActivityBinding;
+import net.hugonardo.gjp.tools.base.BaseActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private MainActivityBinding mBinding;
 

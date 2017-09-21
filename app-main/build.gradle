@@ -77,4 +77,13 @@ dependencies {
 
     compileOnly "org.projectlombok:lombok:${lombok_version}"
     annotationProcessor "org.projectlombok:lombok:${lombok_version}"
+
+    compileOnly "javax.annotation:jsr250-api:${jsr250_version}"
+    implementation "com.google.dagger:dagger:${dagger_version}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${dagger_version}"
+    testAnnotationProcessor "com.google.dagger:dagger-compiler:${dagger_version}"
+
+    implementation "com.google.dagger:dagger-android-support:${dagger_version}"
+    annotationProcessor "com.google.dagger:dagger-android-processor:${dagger_version}"
+    testAnnotationProcessor "com.google.dagger:dagger-android-processor:${dagger_version}"
 }

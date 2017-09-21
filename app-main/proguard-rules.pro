@@ -52,3 +52,6 @@
 -dontnote org.apache.commons.codec.**
 -dontnote org.apache.http.**
 
+# Em razão de anotações internas do Dagger 2
+# https://github.com/google/dagger/issues/645
+-dontwarn com.google.errorprone.annotations.*

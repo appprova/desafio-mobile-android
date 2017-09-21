@@ -1,14 +1,14 @@
 package net.hugonardo.gjp;
 
-import android.app.Application;
 import android.support.annotation.CallSuper;
 
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
 
+import dagger.android.support.DaggerApplication;
 import io.fabric.sdk.android.Fabric;
 
-public abstract class GjpFabricApplication extends Application {
+public abstract class GjpFabricApplication extends DaggerApplication {
 
     @CallSuper @Override public void onCreate() {
         super.onCreate();
