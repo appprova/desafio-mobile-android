@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">JavaPop in GitHub</string>
+    <string name="title_activity_main">Popular Java in GitHub</string>
+</resources>
