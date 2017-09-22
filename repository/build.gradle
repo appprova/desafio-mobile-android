@@ -32,12 +32,12 @@ dependencies {
     implementation "com.android.support:support-annotations:${android_support_version}"
     implementation "com.android.support:support-core-utils:${android_support_version}"
 
-    implementation project(':commons-java')
-    implementation project(':commons-android')
-
     api "com.squareup.retrofit2:retrofit:${retrofit_version}"
     api "com.squareup.retrofit2:converter-gson:${retrofit_version}"
-    implementation "com.google.code.gson:gson:${gson_version}"
+    api "com.google.code.gson:gson:${gson_version}"
+
+    implementation project(':commons-java')
+    implementation project(':commons-android')
 
     compileOnly "javax.annotation:jsr250-api:${jsr250_version}"
     implementation "com.google.dagger:dagger:${dagger_version}"

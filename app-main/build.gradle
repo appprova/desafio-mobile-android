@@ -83,6 +83,10 @@ dependencies {
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakcanary_version}"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${leakcanary_version}"
 
+    implementation project(':commons-android')
+    implementation project(':commons-java')
+    implementation project(':repository')
+
     compileOnly "org.projectlombok:lombok:${lombok_version}"
     annotationProcessor "org.projectlombok:lombok:${lombok_version}"
 

@@ -1,6 +1,7 @@
 package net.hugonardo.gjp.di;
 
 import net.hugonardo.gjp.GjpApplication;
+import net.hugonardo.gjp.api.infra.di.ApiClientModule;
 
 import javax.inject.Singleton;
 
@@ -13,6 +14,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
         AndroidSupportInjectionModule.class,
         ContributorsModule.class,
         ApplicationModule.class,
+        ApiClientModule.class,
 })
 public interface ApplicationInjector extends AndroidInjector<GjpApplication> {
 
