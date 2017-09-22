@@ -5,16 +5,17 @@ import com.google.gson.GsonBuilder;
 
 public final class JsonParserTool {
 
-    private static Gson sGson;
+    private static Gson mGson;
 
     public static Gson gson() {
-        if (sGson == null) {
-            sGson = new GsonBuilder()
+        if (mGson == null) {
+            mGson = new GsonBuilder()
+                    .registerTypeAdapterFactory(GjpAdapterFactory.create())
                     .registerTypeAdapter(String.class, StringDeserializer.instance())
                     .setExclusionStrategies(IgnoreNonSerializedNameFields.create())
                     .create();
         }
-        return sGson;
+        return mGson;
     }
 
     public static String toJson(Object o) {
