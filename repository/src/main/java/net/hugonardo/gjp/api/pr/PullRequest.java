@@ -20,4 +20,18 @@ public abstract class PullRequest implements Parcelable {
     public static TypeAdapter<PullRequest> typeAdapter(Gson gson) {
         return new AutoValue_PullRequest.GsonTypeAdapter(gson);
     }
+
+    public static Builder builder() {
+        return new AutoValue_PullRequest.Builder();
+    }
+
+    @AutoValue.Builder
+    public static abstract class Builder {
+        public abstract Builder id(Long id);
+        public abstract Builder number(Long number);
+        public abstract Builder title(String title);
+        public abstract Builder body(String body);
+        public abstract Builder user(User user);
+        public abstract PullRequest build();
+    }
 }

@@ -3,4 +3,5 @@
     <color name="colorPrimary">#343438</color>
     <color name="colorPrimaryDark">#343438</color>
     <color name="colorAccent">#3B7BAE</color>
+    <color name="list_unavailable_background">#e4e4e4</color>
 </resources>
