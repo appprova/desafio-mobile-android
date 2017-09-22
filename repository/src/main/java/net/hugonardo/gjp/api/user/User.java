@@ -12,7 +12,10 @@ import com.google.gson.annotations.SerializedName;
 public abstract class User implements Parcelable {
     @SerializedName("id") public abstract Long id();
     @SerializedName("login") public abstract String login();
-    @SerializedName("name") public abstract String name();
+
+    @Nullable
+    @SerializedName("name")
+    public abstract String name();
 
     @Nullable
     @SerializedName("avatar_url")

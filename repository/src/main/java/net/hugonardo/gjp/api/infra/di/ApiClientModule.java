@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 
 import net.hugonardo.gjp.api.infra.retrofit.JsonParserTool;
 import net.hugonardo.gjp.api.infra.retrofit.NetworkMonitorInterceptor;
+import net.hugonardo.gjp.api.repo.RepoClient;
 import net.hugonardo.java.commons.network.NetworkMonitor;
 
 import javax.inject.Singleton;
@@ -18,6 +19,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class ApiClientModule {
+
+    @Provides @Singleton RepoClient repoClient(Retrofit retrofit) {
+        return retrofit.create(RepoClient.class);
+    }
 
     @Provides @Singleton Retrofit retrofit(@BaseUrl String baseUrl, Gson gson, OkHttpClient httpClient) {
         return new Retrofit.Builder()
