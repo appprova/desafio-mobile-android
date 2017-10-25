@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Github JavaPop</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="default_network_error">Conecte seu celular à rede internet e tente novamente.</string>
+    <string name="service_error">Estamos com intermitência em nossos servidores. Tente novamente.</string>
+    <string name="generic_error">Não conseguimos processar sua solicitação. Tente novamente.</string>
+    <string name="icon_bad_error">:(</string>
+
+    <string name="pull_header">%1$d opened / %2$d closed</string>
+</resources>

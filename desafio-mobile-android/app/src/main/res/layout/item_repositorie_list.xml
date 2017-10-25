@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativelayout_item_repositorie_main_content"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/item_repositorie_list_height"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/item_repositorie_list_default_margin"
+    android:paddingTop="@dimen/item_repositorie_list_margin_top">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_toLeftOf="@+id/linearlayout_item_repositorie_list_user_info"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/textview_item_repositorie_list_repo_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue_title"
+            android:textSize="@dimen/text_big_size"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end"
+            tools:text="Nome do Repositório" />
+
+        <TextView
+            android:id="@+id/textview_item_respositorie_list_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_repositorie_list_description_magin_top"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textSize="@dimen/text_default_size"
+            tools:text="Nome do Repositórioaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_above="@+id/view_item_repositorie_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/item_repositorie_list_info_margin_bottom"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            app:srcCompat="@drawable/ic_source_branch" />
+
+        <TextView
+            android:id="@+id/textview_item_respositorie_list_forks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:textColor="@color/yellow_info"
+            android:textSize="@dimen/text_large_size"
+            android:textStyle="bold"
+            tools:text="640" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/item_repositorie_list_star_margin_left"
+            app:srcCompat="@drawable/ic_star" />
+
+        <TextView
+            android:id="@+id/textview_item_respositorie_list_stars"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:textColor="@color/yellow_info"
+            android:textSize="@dimen/text_large_size"
+            android:textStyle="bold"
+            tools:text="98" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayout_item_repositorie_list_user_info"
+        android:layout_width="@dimen/item_repositorie_list_user_widht"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/item_repositorie_list_default_margin"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageview_item_respositorie_list_avatar"
+            android:layout_width="@dimen/item_repositorie_list_photo_size"
+            android:layout_height="@dimen/item_repositorie_list_photo_size"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@drawable/ic_user" />
+
+        <TextView
+            android:id="@+id/textview_item_respositorie_list_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/blue_title"
+            android:textSize="@dimen/text_default_size"
+            android:textStyle="bold"
+            tools:text="username" />
+
+        <TextView
+            android:id="@+id/textview_item_respositorie_list_fullname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textSize="@dimen/text_small_size"
+            tools:text="Nome Sobrenome" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_item_repositorie_list"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_line_height"
+        android:layout_alignParentBottom="true"
+        android:background="@color/line_color" />
+
+</RelativeLayout>
