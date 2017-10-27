@@ -2,6 +2,7 @@
 .gradle
 /local.properties\
 */.idea
+gradlew.bat
 .DS_Store
 /build
 /captures
