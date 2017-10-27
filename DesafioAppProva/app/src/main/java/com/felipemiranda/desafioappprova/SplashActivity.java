@@ -4,8 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
 
 import com.felipemiranda.desafioappprova.ui.home.HomeActivity;
+import com.felipemiranda.desafioappprova.utils.Utils;
+
+import butterknife.BindView;
 
 /**
  * Created by felipemiranda on 27/10/17.
@@ -13,7 +17,7 @@ import com.felipemiranda.desafioappprova.ui.home.HomeActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private static final long DELAY = 1300;
+    private static final long DELAY = 1500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

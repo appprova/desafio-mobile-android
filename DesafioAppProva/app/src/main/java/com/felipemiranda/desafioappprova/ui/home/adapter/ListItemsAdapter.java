@@ -36,7 +36,7 @@ public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsAdapter.AppV
     }
 
     public interface OnClickItem {
-        void onClickItem(String url);
+        void onClickItem(String url, String name);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsAdapter.AppV
         holderItem.item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mOnClickItem.onClickItem(item.getPulls_url());
+                mOnClickItem.onClickItem(item.getPulls_url(), item.getName());
             }
         });
 

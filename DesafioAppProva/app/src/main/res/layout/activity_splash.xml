@@ -12,6 +12,7 @@
         app:srcCompat="@drawable/appprova" />
 
     <TextView
+        android:id="@+id/tv_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/iv_appprova"
@@ -19,5 +20,14 @@
         android:text="@string/felipe_miranda"
         android:textStyle="bold"
         android:textSize="22sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_name"
+        android:gravity="center"
+        android:text="@string/github_profile"
+        android:textStyle="italic"
+        android:textSize="16sp"/>
 
 </RelativeLayout>

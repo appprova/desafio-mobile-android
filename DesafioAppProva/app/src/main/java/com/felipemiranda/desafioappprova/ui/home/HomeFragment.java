@@ -14,6 +14,7 @@ import com.felipemiranda.desafioappprova.ui.home.adapter.ListItemsAdapter;
 import com.felipemiranda.desafioappprova.ui.main.BaseFragment;
 import com.felipemiranda.desafioappprova.ui.main.BaseLoadingPresenter;
 import com.felipemiranda.desafioappprova.ui.search.ItemDetailFragment;
+import com.felipemiranda.desafioappprova.utils.Utils;
 
 import butterknife.BindView;
 
@@ -53,6 +54,7 @@ public class HomeFragment extends BaseFragment implements HomeView, ListItemsAda
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        getActivity().setTitle(getString(R.string.github_java));
         mHomePresenter.requestSearch();
     }
 
@@ -67,11 +69,12 @@ public class HomeFragment extends BaseFragment implements HomeView, ListItemsAda
             ListItemsAdapter listItemsAdapter = new ListItemsAdapter(response.getItems(), this);
             rvListItems.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
             rvListItems.setAdapter(listItemsAdapter);
+            Utils.recyclerViewAnimationEntrance(rvListItems);
         }
     }
 
     @Override
-    public void onClickItem(String url) {
-        setFragmentContent(ItemDetailFragment.newInstance(url), TAG);
+    public void onClickItem(String url, String name) {
+        setFragmentContent(ItemDetailFragment.newInstance(url, name), TAG);
     }
 }

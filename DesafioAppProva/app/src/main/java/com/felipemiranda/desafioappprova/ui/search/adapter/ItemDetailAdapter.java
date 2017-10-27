@@ -17,13 +17,13 @@ import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.felipemiranda.desafioappprova.R;
 import com.felipemiranda.desafioappprova.model.ItemDetail;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.felipemiranda.desafioappprova.utils.Utils.getDate;
 
 /**
  * Created by felipemiranda on 26/10/17.
@@ -61,11 +61,21 @@ public class ItemDetailAdapter extends RecyclerView.Adapter<ItemDetailAdapter.Ap
             }
         });
 
-        @SuppressLint("SimpleDateFormat")
-        SimpleDateFormat sFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        String date = sFormat.format(getDate(item.getCreated_at()));
+        if(item.getCreated_at() != null) {
+            @SuppressLint("SimpleDateFormat")
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            String formattedTime = "";
 
-        holderItem.tvDate.setText(date);
+            try {
+                Date date = sdf.parse(item.getCreated_at());
+                formattedTime = output.format(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            holderItem.tvDate.setText(formattedTime);
+        }
         holderItem.tvUsername.setText(item.getUser().getLogin() != null ? item.getUser().getLogin() : "");
         holderItem.tvName.setText(item.getTitle() != null ? item.getTitle() : "");
         holderItem.tvDescription.setText(item.getBody() != null ? item.getBody() : "");

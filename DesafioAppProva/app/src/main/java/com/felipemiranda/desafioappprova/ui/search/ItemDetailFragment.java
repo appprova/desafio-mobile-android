@@ -9,12 +9,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.felipemiranda.desafioappprova.R;
 import com.felipemiranda.desafioappprova.model.ItemDetail;
 import com.felipemiranda.desafioappprova.ui.main.BaseFragment;
 import com.felipemiranda.desafioappprova.ui.main.BaseLoadingPresenter;
 import com.felipemiranda.desafioappprova.ui.search.adapter.ItemDetailAdapter;
+import com.felipemiranda.desafioappprova.utils.Utils;
 
 import java.util.ArrayList;
 
@@ -30,12 +32,14 @@ public class ItemDetailFragment extends BaseFragment implements ItemDetailView, 
     RecyclerView rvListItems;
 
     private static final String URL = "URL";
+    private static final String NAME = "NAME";
 
     private ItemDetailPresenter mItemDetailPresenter;
 
-    public static ItemDetailFragment newInstance(String url) {
+    public static ItemDetailFragment newInstance(String url, String name) {
         Bundle args = new Bundle();
         args.putString(URL, url);
+        args.putString(NAME, name);
         ItemDetailFragment fragment = new ItemDetailFragment();
         fragment.setArguments(args);
         return fragment;
@@ -70,10 +74,15 @@ public class ItemDetailFragment extends BaseFragment implements ItemDetailView, 
 
     @Override
     public void successItemDetail(ArrayList<ItemDetail> response) {
-        if (response != null) {
+        if (response != null && !response.isEmpty()) {
+            getActivity().setTitle(getArguments().getString(NAME));
             ItemDetailAdapter itemDetailAdapter = new ItemDetailAdapter(response, this);
             rvListItems.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
             rvListItems.setAdapter(itemDetailAdapter);
+            Utils.recyclerViewAnimationEntrance(rvListItems);
+        } else {
+            getActivity().onBackPressed();
+            Toast.makeText(getActivity(), getString(R.string.not_pull), Toast.LENGTH_LONG).show();
         }
     }
 
