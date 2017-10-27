@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.felipemiranda.desafioappprova.R;
 import com.felipemiranda.desafioappprova.model.response.GenericErrorResponse;
-import com.felipemiranda.desafioappprova.ui.HomeActivity;
+import com.felipemiranda.desafioappprova.ui.home.HomeActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -20,8 +20,6 @@ import butterknife.Unbinder;
  */
 
 public abstract class BaseFragment extends Fragment implements BaseLoadingView {
-
-    protected abstract int getFragmentLayout();
 
     public abstract BaseLoadingPresenter getPresenter();
 

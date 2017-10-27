@@ -13,6 +13,7 @@ import com.felipemiranda.desafioappprova.model.response.SearchResponse;
 import com.felipemiranda.desafioappprova.ui.home.adapter.ListItemsAdapter;
 import com.felipemiranda.desafioappprova.ui.main.BaseFragment;
 import com.felipemiranda.desafioappprova.ui.main.BaseLoadingPresenter;
+import com.felipemiranda.desafioappprova.ui.search.ItemDetailFragment;
 
 import butterknife.BindView;
 
@@ -20,7 +21,7 @@ import butterknife.BindView;
  * Created by felipemiranda on 26/10/17.
  */
 
-public class HomeFragment extends BaseFragment implements HomeView {
+public class HomeFragment extends BaseFragment implements HomeView, ListItemsAdapter.OnClickItem {
 
     public static final String TAG = HomeFragment.class.getSimpleName();
 
@@ -56,11 +57,6 @@ public class HomeFragment extends BaseFragment implements HomeView {
     }
 
     @Override
-    protected int getFragmentLayout() {
-        return R.layout.fragment_home;
-    }
-
-    @Override
     public BaseLoadingPresenter getPresenter() {
         return mHomePresenter;
     }
@@ -68,9 +64,14 @@ public class HomeFragment extends BaseFragment implements HomeView {
     @Override
     public void successSearch(SearchResponse response) {
         if (response != null && response.getItems() != null && !response.getItems().isEmpty()) {
-            ListItemsAdapter listItemsAdapter = new ListItemsAdapter(response.getItems());
+            ListItemsAdapter listItemsAdapter = new ListItemsAdapter(response.getItems(), this);
             rvListItems.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
             rvListItems.setAdapter(listItemsAdapter);
         }
+    }
+
+    @Override
+    public void onClickItem(String url) {
+        setFragmentContent(ItemDetailFragment.newInstance(url), TAG);
     }
 }

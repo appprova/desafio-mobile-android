@@ -1,4 +1,4 @@
-package com.felipemiranda.desafioappprova.ui;
+package com.felipemiranda.desafioappprova.ui.home;
 
 import android.support.annotation.AnimRes;
 import android.support.v4.app.Fragment;
@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.felipemiranda.desafioappprova.R;
-import com.felipemiranda.desafioappprova.ui.home.HomeFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,8 +53,8 @@ public class HomeActivity extends AppCompatActivity {
                 .beginTransaction();
 
         transaction.setCustomAnimations(enter, exit, popEnter, popExit);
-        transaction.add(R.id.content, fragment, tag);
+        transaction.replace(R.id.content, fragment, tag);
         transaction.addToBackStack(tagBackStack);
-        transaction.commitAllowingStateLoss();
+        transaction.commit();
     }
 }

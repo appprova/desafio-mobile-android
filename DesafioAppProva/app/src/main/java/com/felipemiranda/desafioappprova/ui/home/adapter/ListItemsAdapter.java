@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -27,9 +28,15 @@ import butterknife.ButterKnife;
 public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsAdapter.AppViewHolder> {
 
     private ArrayList<Item> mItems;
+    private OnClickItem mOnClickItem;
 
-    public ListItemsAdapter(ArrayList<Item> mSearchResponses) {
+    public ListItemsAdapter(ArrayList<Item> mSearchResponses, OnClickItem onClickItem) {
         this.mItems = mSearchResponses;
+        this.mOnClickItem = onClickItem;
+    }
+
+    public interface OnClickItem {
+        void onClickItem(String url);
     }
 
     @Override
@@ -43,12 +50,19 @@ public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsAdapter.AppV
         final Item item = mItems.get(holder.getAdapterPosition());
         ItemViewHolder holderItem = (ItemViewHolder) holder;
 
-        holderItem.tvName.setText(item.getName());
-        holderItem.tvDescription.setText(item.getDescription());
-        holderItem.tvFork.setText(String.valueOf(item.getForks_count()));
-        holderItem.tvStar.setText(String.valueOf(item.getStargazers_count()));
-        holderItem.tvUsername.setText(item.getOwner().getLogin());
-        holderItem.tvUserFullName.setText(item.getFull_name());
+        holderItem.item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOnClickItem.onClickItem(item.getPulls_url());
+            }
+        });
+
+        holderItem.tvName.setText(item.getName() != null ? item.getName() : "");
+        holderItem.tvDescription.setText(item.getDescription() != null ? item.getDescription() : "");
+        holderItem.tvFork.setText(item.getForks_count() != null ? String.valueOf(item.getForks_count()) : "0");
+        holderItem.tvStar.setText(item.getStargazers_count() != null ? String.valueOf(item.getStargazers_count()) : "0");
+        holderItem.tvUsername.setText(item.getOwner().getLogin() != null ? item.getOwner().getLogin() : "");
+        holderItem.tvUserFullName.setText(item.getFull_name() != null ? item.getFull_name() : "");
 
         if (mItems.get(position).getOwner().getAvatar_url() != null) {
             final int patternSizeImg = 420;
@@ -91,6 +105,8 @@ public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsAdapter.AppV
         TextView tvUsername;
         @BindView(R.id.tv_user_fullname)
         TextView tvUserFullName;
+        @BindView(R.id.item)
+        LinearLayout item;
 
         public ItemViewHolder(View itemView) {
             super(itemView);

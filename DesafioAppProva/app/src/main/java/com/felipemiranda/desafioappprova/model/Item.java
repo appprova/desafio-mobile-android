@@ -20,6 +20,8 @@ public class Item implements Serializable {
     private Integer stargazers_count;
     @SerializedName("forks_count")
     private Integer forks_count;
+    @SerializedName("pulls_url")
+    private String pulls_url;
 
     public String getName() {
         return name;
@@ -67,5 +69,13 @@ public class Item implements Serializable {
 
     public void setForks_count(Integer forks_count) {
         this.forks_count = forks_count;
+    }
+
+    public String getPulls_url() {
+        return pulls_url;
+    }
+
+    public void setPulls_url(String pulls_url) {
+        this.pulls_url = pulls_url;
     }
 }
