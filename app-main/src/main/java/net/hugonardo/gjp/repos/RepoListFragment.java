@@ -95,7 +95,7 @@ public class RepoListFragment extends BaseFragment
     }
 
     @Override public void onItemClick(Repo repo) {
-        Snackbar.make(mEasyRecyclerView, "Navegar até a lista de PRs", Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(mEasyRecyclerView, String.format("Clicou em %s", repo.name()), Snackbar.LENGTH_SHORT).show();
         //Bundle args = PullRequestActivity.getLauncherBundle(mModel);
         //getFrameworkTools().navigator().forwardTo(PullRequestActivity.class, args);
     }

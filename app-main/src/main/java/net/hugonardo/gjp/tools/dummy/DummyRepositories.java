@@ -1,12 +1,12 @@
 package net.hugonardo.gjp.tools.dummy;
 
+import android.support.v4.util.LongSparseArray;
+
 import net.hugonardo.gjp.api.repo.Repo;
 import net.hugonardo.gjp.api.user.User;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Helper class for providing sample content for user interfaces created by
@@ -19,14 +19,14 @@ public class DummyRepositories {
     /**
      * An array of sample (dummy) items.
      */
-    public static final List<Repo> ITEMS = new ArrayList<>();
+    private static final List<Repo> ITEMS = new ArrayList<>();
 
     /**
      * A map of sample (dummy) items, by ID.
      */
-    public static final Map<Long, Repo> ITEM_MAP = new HashMap<>();
+    private static final LongSparseArray<Repo> ITEM_MAP = new LongSparseArray<>();
 
-    private static final int COUNT = 200;
+    private static final int COUNT = 38;
     private static final int PER_PAGE = 10;
     private static final int PAGES = COUNT / PER_PAGE;
 
