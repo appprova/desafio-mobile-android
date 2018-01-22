@@ -1,0 +1,115 @@
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+android {
+    compileSdkVersion Integer.parseInt(compile_sdk_version)
+    buildToolsVersion "${build_tools_version}"
+
+    compileOptions {
+        sourceCompatibility "${java_source_compatibility}"
+        targetCompatibility "${java_target_compatibility}"
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
+    defaultConfig {
+        applicationId "net.hugonardo.gjp"
+        minSdkVersion Integer.parseInt(min_sdk_version)
+        targetSdkVersion Integer.parseInt(target_sdk_version)
+        versionCode Integer.parseInt(app_version_code)
+        versionName "${app_version_code}"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file("../keystores/debug.keystore")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+        release {
+            storeFile file(releaseStoreFile)
+            storePassword releaseStorePassword
+            keyAlias releaseKeyAlias
+            keyPassword releaseKeyPassword
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            signingConfig signingConfigs.debug
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-debug"
+            ext.enableCrashlytics = false
+            ext.alwaysUpdateBuildId = false
+        }
+        release {
+            minifyEnabled true
+            zipAlignEnabled true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+// Isto foi incluído aqui para funcionar injeção de dependência com Dagger 2 no teste unitário.
+// Mais informações: https://stackoverflow.com/questions/42793505/dagger-2-generated-test-component-not-recognized
+android.applicationVariants.all {
+    def aptOutputDir = new File(buildDir, "generated/source/apt/${it.unitTestVariant.dirName}")
+    it.unitTestVariant.addJavaSourceFoldersToModel(aptOutputDir)
+}
+
+dependencies {
+    implementation "com.android.support:appcompat-v7:${android_support_version}"
+    implementation "com.android.support:design:${android_support_version}"
+    implementation "com.android.support:recyclerview-v7:${android_support_version}"
+    implementation "com.android.support.constraint:constraint-layout:${constraint_layout_version}"
+    implementation "com.jude:easyrecyclerview:${easy_recyclerview_version}"
+    implementation "com.yqritc:recyclerview-flexibledivider:${recycler_view_flexible_divider_version}"
+    implementation("com.crashlytics.sdk.android:crashlytics:${crashlytics_version}@aar") { transitive = true }
+    implementation "com.jakewharton.timber:timber:${timber_version}"
+
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakcanary_version}"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${leakcanary_version}"
+
+    implementation project(':repository')
+    implementation project(':commons-android')
+    implementation project(':commons-java')
+
+    compileOnly "org.projectlombok:lombok:${lombok_version}"
+    annotationProcessor "org.projectlombok:lombok:${lombok_version}"
+
+    compileOnly "javax.annotation:jsr250-api:${jsr250_version}"
+    implementation "com.google.dagger:dagger:${dagger_version}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${dagger_version}"
+    testAnnotationProcessor "com.google.dagger:dagger-compiler:${dagger_version}"
+
+    implementation "com.google.dagger:dagger-android-support:${dagger_version}"
+    annotationProcessor "com.google.dagger:dagger-android-processor:${dagger_version}"
+    testAnnotationProcessor "com.google.dagger:dagger-android-processor:${dagger_version}"
+
+    implementation "org.parceler:parceler-api:${parceler_version}"
+    annotationProcessor "org.parceler:parceler:${parceler_version}"
+
+    testImplementation "org.robolectric:robolectric:${robolectric_version}"
+    testImplementation "com.squareup.okhttp3:mockwebserver:${mockwebserver_version}"
+    testImplementation "org.mockito:mockito-core:${mockito_version}"
+    testImplementation "junit:junit:${junit_version}"
+    testImplementation "org.hamcrest:hamcrest-junit:${hamcrest_version}"
+
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:${espresso_version}", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+    })
+}

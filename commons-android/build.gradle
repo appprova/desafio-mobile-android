@@ -1,0 +1,39 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion Integer.parseInt(compile_sdk_version)
+    buildToolsVersion "${build_tools_version}"
+
+    defaultConfig {
+        minSdkVersion Integer.parseInt(min_sdk_version)
+        targetSdkVersion Integer.parseInt(target_sdk_version)
+    }
+
+    compileOptions {
+        sourceCompatibility "${java_source_compatibility}"
+        targetCompatibility "${java_target_compatibility}"
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+}
+
+dependencies {
+    implementation "com.android.support:appcompat-v7:${android_support_version}"
+    implementation "com.android.support:recyclerview-v7:${android_support_version}"
+    implementation "com.jude:easyrecyclerview:${easy_recyclerview_version}"
+    implementation "com.jakewharton.timber:timber:${timber_version}"
+
+    implementation project(':commons-java')
+
+    compileOnly "org.projectlombok:lombok:${lombok_version}"
+    annotationProcessor "org.projectlombok:lombok:${lombok_version}"
+
+    testImplementation "org.robolectric:robolectric:${robolectric_version}"
+    testImplementation "org.mockito:mockito-core:${mockito_version}"
+    testImplementation "junit:junit:${junit_version}"
+    testImplementation "org.hamcrest:hamcrest-junit:${hamcrest_version}"
+}

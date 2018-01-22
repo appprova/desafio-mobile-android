@@ -1,0 +1,1 @@
+Biblioteca pessoal com algumas funções comuns e úteis, que dependem do Android Framework.

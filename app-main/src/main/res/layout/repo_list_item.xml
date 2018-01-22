@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="net.hugonardo.gjp.repos.RepoActivity">
+
+    <data>
+        <import type="android.view.View" />
+        <variable name="viewModel" type="net.hugonardo.gjp.repos.RepoListItemViewModel" />
+        <variable name="handler" type="net.hugonardo.gjp.repos.RepoListAdapter.EventHandler" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:onClick="@{() -> handler.onItemClick(viewModel.model)}"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/list_item_horizontal_margin"
+        android:paddingLeft="@dimen/list_item_vertical_margin"
+        android:paddingRight="@dimen/list_item_vertical_margin"
+        android:paddingTop="@dimen/list_item_horizontal_margin">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/repo_item_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                android:text="@{viewModel.name}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                tools:text="Repo Name" />
+
+            <TextView
+                android:id="@+id/repo_item_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:lines="2"
+                android:maxLines="2"
+                android:text="@{viewModel.description}"
+                tools:text="Repo description nullam vel vestibulum orci. Suspendisse sodales turpis vitae magna porta aliquet. Aenean sit amet massa vitae risus laoreet vulputate. Donec." />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/repo_item_ic_forks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_branch" />
+
+                <TextView
+                    android:id="@+id/repo_item_forks_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@{viewModel.forksCount}"
+                    tools:text="640" />
+
+                <ImageView
+                    android:id="@+id/repo_item_ic_starts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
+                    app:srcCompat="@drawable/ic_star" />
+
+                <TextView
+                    android:id="@+id/repo_item_starts_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@{viewModel.starsCount}"
+                    tools:text="98" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center" android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/repo_item_user_avatar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleType="fitXY"
+                tools:src="@mipmap/ic_launcher_round" />
+
+            <TextView
+                android:id="@+id/repo_item_owner_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                android:text="@{viewModel.ownerLogin}"
+                android:textAlignment="center"
+                tools:text="username" />
+
+            <TextView
+                android:id="@+id/repo_item_owner_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                android:text="@{viewModel.ownerName}"
+                android:textAlignment="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                tools:text="Name Second" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">JavaPop in GitHub</string>
+    <string name="loading">Carregando…</string>
+    <string name="empty_list_text">Nenhum item para exibir</string>
+
+    <string name="title_activity_main">Popular Java in GitHub</string>
+
+    <string name="title_activity_repo">Popular Java in GitHub</string>
+</resources>

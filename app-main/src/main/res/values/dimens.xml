@@ -1,0 +1,13 @@
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+
+    <dimen name="list_item_vertical_margin">16dp</dimen>
+    <dimen name="list_item_horizontal_margin">8dp</dimen>
+    <dimen name="list_divider_vertical_margin_end">0dp</dimen>
+    <dimen name="list_divider_vertical_margin_start">0dp</dimen>
+    <dimen name="list_item_loading_progressbar_size">38dp</dimen>
+    <dimen name="list_item_loading_text_margin">4dp</dimen>
+</resources>
